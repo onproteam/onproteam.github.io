@@ -187,19 +187,33 @@
   💬
 </button>
 
-<script defer>
-  // Initialize Signos
+<script>
+function waitForSignos(callback, interval = 50, maxAttempts = 200) {
+  let attempts = 0;
+  const timer = setInterval(() => {
+    if (window.signos) {
+      clearInterval(timer);
+      callback(window.signos);
+    } else if (attempts++ > maxAttempts) {
+      clearInterval(timer);
+      console.error("signos не инициализировался");
+    }
+  }, interval);
+}
+
+// Использование
+waitForSignos((signos) => {
   signos.init({
-    customerName: "John Wick",
-    customerEmail: "john@wick.com",
+    customerName: "Name of your customer here",
+    customerEmail: "Email of your customer",
     orgId: "cPwTShhdLfUh3lqztPFtnVE6y4OB5d37"
   });
 
-  // Attach event to the floating button
   const chatButton = document.getElementById("openChatButton");
   chatButton.addEventListener("click", () => {
     signos.toggle();
   });
+});
 </script>
 </body>
 </html>
