@@ -196,7 +196,7 @@ function waitForSignos(callback, interval = 50, maxAttempts = 200) {
       callback(window.signos);
     } else if (attempts++ > maxAttempts) {
       clearInterval(timer);
-      console.error("signos не инициализировался");
+      console.error("signos not initialized");
     }
   }, interval);
 }
@@ -204,8 +204,8 @@ function waitForSignos(callback, interval = 50, maxAttempts = 200) {
 // Использование
 waitForSignos((signos) => {
   signos.init({
-    customerName: "Name of your customer here",
-    customerEmail: "Email of your customer",
+    customerName: "John Wick",
+    customerEmail: "john@wick.com",
     orgId: "cPwTShhdLfUh3lqztPFtnVE6y4OB5d37"
   });
 
